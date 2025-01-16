@@ -1,0 +1,68 @@
+package testCases;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import pageObjects.HomePage;
+import pageObjects.LoginPage;
+import pageObjects.MyAccount;
+import testBase.BaseClass;
+import utilities.DataProviders;
+
+public class TC003_LoginDDT extends BaseClass {
+	
+	
+  @Test(dataProvider="LoginData", dataProviderClass=DataProviders.class, groups= {"DataDriven"}) // To get data provider from different package and class
+  public void verfy_loginDDT(String email, String password, String exp) throws InterruptedException 
+  {
+	  logger.info("*** Starting TC003_LoginDDT ***");
+	  
+	  try
+	  {
+	  HomePage hp=new HomePage(driver);
+	  hp.clickMyAccount();
+	  hp.clickLogin();
+	  
+	  LoginPage lp=new LoginPage(driver);
+	  lp.setEmail(email);
+	  lp.setPassword(password);
+	  lp.clickLogin();
+	  
+	  MyAccount macc=new MyAccount(driver);
+	  boolean targetPage=macc.isMyAccountPageExists();
+	  
+	  if(exp.equalsIgnoreCase("Valid"))
+	  {
+		  if(targetPage==true)
+		  {
+			  macc.clickLogout();
+			  Assert.assertTrue(true);
+		  }
+		  else
+		  {
+			  Assert.assertTrue(false);
+		  }
+	  }
+	  if(exp.equalsIgnoreCase("Invalid"))
+	  {
+		  if(targetPage==true)
+		  {
+			  macc.clickLogout();
+			  Assert.assertTrue(false);
+		  }
+		  else
+		  {
+			  Assert.assertTrue(true);
+		  }
+	  }
+	  }
+	  catch(Exception e)
+	  {
+		  Assert.fail("An exception occured: "+ e.getMessage());
+	  }
+	  
+	  logger.info("*** Finished TC003_LoginDDT ***");
+	  Thread.sleep(2000);
+  }
+}
+

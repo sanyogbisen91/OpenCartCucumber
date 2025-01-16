@@ -1,0 +1,61 @@
+package Report;
+
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+
+public class CustomReportCreation {
+	
+	WebDriver driver;
+	
+	@BeforeClass
+	@Parameters({"browser"})
+	void setup()
+	{
+		switch(br)
+		{
+		case "chrome": driver=new ChromeDriver();break;
+		case "edge": driver=new EdgeDriver();break;
+		default: System.out.println("Invalid Browser");return;
+		}
+		
+		  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+		  driver.get("https://qa.pulsesg.com/login/en_US");
+		  driver.manage().window().maximize();
+		  driver.findElement(By.xpath("//input[@id='username']")).sendKeys("ent.esgadmin.aut002");
+		  driver.findElement(By.xpath("//input[@id='password']")).sendKeys("Puls@123");
+		  driver.findElement(By.xpath("//button[text()='Sign In']")).click();
+		  Thread.sleep(10000);
+	}
+	
+	@Test(priority=1)
+	void clickOnReport()
+	{
+		driver.findElement(By.xpath("//*[@id=\"__next\"]/div/div[1]/div/div/ul/div[5]")).click();
+		Assert.assertEquals(driver.getCurrentUrl(), "https://qa.pulsesg.com/data-destination/en_US");
+	}
+	
+	@Test(priority=2)
+	void clickOnCreateReport()
+	{
+		driver.findElement(By.xpath("//button[text()='Create Report']")).click();
+		Assert.assertEquals(driver.getTitle(), "Pulsora Metric App");
+	}
+		
+	@AfterClass
+	void tearDown()
+	{
+		driver.close();
+	}
+		
+		
+		 
+
+}

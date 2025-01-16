@@ -1,0 +1,10 @@
+package Test01;
+
+public class HandleCheckBoxes {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,48 @@
+package Report;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class ReportPage {
+	
+	WebDriver driver;
+  @BeforeClass
+  public void browserSetup() throws InterruptedException 
+  {
+	  driver=new ChromeDriver();
+	  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+  }
+  @Test
+  public void testLogin() throws InterruptedException 
+  {
+	  driver.get("https://qa.pulsesg.com/login/en_US");
+	  driver.manage().window().maximize();
+	  driver.findElement(By.xpath("//input[@id='username']")).sendKeys("ent.esgadmin.aut002");
+	  driver.findElement(By.xpath("//input[@id='password']")).sendKeys("Puls@123");
+	  driver.findElement(By.xpath("//button[text()='Sign In']")).click();
+	  Thread.sleep(7000);
+	  boolean status=driver.findElement(By.xpath("//*[@id=\"__next\"]/div/div[2]/header/header/div[1]/h6")).isDisplayed();
+	  if(status==true)
+	  {
+		  Assert.assertTrue(true);
+	  }
+	  else
+	  {
+		  Assert.fail();
+	  }
+  }
+
+  @AfterClass
+  public void tearDown() 
+  {
+	  driver.close();
+  }
+
+}

@@ -1,0 +1,38 @@
+package Test01;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class ScrollingPage {
+
+	public static void main(String[] args) {
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://demo.nopcommerce.com/");
+		
+		driver.manage().window().maximize();
+		
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		
+		//scroll down the page by pixel number
+		/*
+		js.executeScript("window.scrollBy(0,1500)", "");
+		System.out.println(js.executeScript("return window.pageYOffset;"));
+		*/
+		
+		//scroll the page until webelement is visible
+		/*
+		WebElement elem=driver.findElement(By.xpath("//strong[text()='Community poll']"));
+		js.executeScript("arguments[0].scrollIntoView();", elem);
+		System.out.println(js.executeScript("return window.pageYOffset;"));
+		*/
+		
+		//scroll page till end of the page
+		js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+		System.out.println(js.executeScript("return window.pageYOffset;"));
+
+	}
+
+}

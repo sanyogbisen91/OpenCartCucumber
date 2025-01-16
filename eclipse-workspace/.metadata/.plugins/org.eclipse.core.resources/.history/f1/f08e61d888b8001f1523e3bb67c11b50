@@ -1,0 +1,28 @@
+package Test01;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class XPathAxes {
+
+	public static void main(String[] args) throws InterruptedException {
+		WebDriver driver = new ChromeDriver();
+		
+		driver.get("https://money.rediff.com/gainers/bse/daily/groupa");
+		driver.manage().window().maximize();
+		Thread.sleep(5000);
+		
+		//String text = driver.findElement(By.xpath("//*[@id=\"leftcontainer\"]/table/tbody/tr[54]/td[1]/a")).getText();
+		String text = driver.findElement(By.xpath("//a[contains(text()='LT')]")).getText();
+		System.out.println("Self :"+ text);
+		
+		//String text1 = driver.findElement(By.xpath("//*[@id=\"leftcontainer\"]/table/tbody/tr[54]/td[1]/a")).
+		
+		
+		
+		
+		driver.close();
+	}
+
+}

@@ -1,0 +1,18 @@
+package Report;
+
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterClass;
+
+public class CustomReportCreation {
+	
+	WebDriver driver;
+	
+	@BeforeClass
+	@Parameters
+		
+		
+		
+		 
+
+}

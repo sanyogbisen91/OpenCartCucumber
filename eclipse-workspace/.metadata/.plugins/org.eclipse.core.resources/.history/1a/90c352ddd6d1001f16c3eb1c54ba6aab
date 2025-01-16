@@ -1,0 +1,9 @@
+package utilities;
+
+import org.testng.annotations.Test;
+
+public class DataProviders {
+  @Test
+  public void f() {
+  }
+}

@@ -1,0 +1,27 @@
+package practice;
+
+public class Palindrome {
+
+	public static void main(String[] args) {
+		int number = 121;
+		int reverse = 0;
+		int remainder;
+		int temp=number;
+		while(number>0)
+		{
+			remainder = temp%10;
+			reverse = reverse*10+ remainder;
+			number = number/10;
+		}
+		if(reverse==temp)
+		{
+			System.out.println(temp+" is an Palindrome Number");
+		}
+		else
+		{
+			System.out.println(temp+" is not an Palindrome Number");
+		}
+
+	}
+
+}

@@ -1,0 +1,38 @@
+package Test_001;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeDriver;
+
+public class HandleCheckBoxes {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		WebDriver driver=new EdgeDriver();
+		
+		
+		driver.get("https://testautomationpractice.blogspot.com/");
+		driver.manage().window().maximize();
+		Thread.sleep(3000);
+		
+		List<WebElement> checkboxes=driver.findElements(By.xpath("//input[@class='form-check-input']"));
+		for(int i=0; i<checkboxes.size(); i++)
+		{
+			checkboxes.get(i).click();
+		}
+		
+		
+		
+		
+		
+		
+		
+	    //driver.close();
+		
+
+	}
+
+}
