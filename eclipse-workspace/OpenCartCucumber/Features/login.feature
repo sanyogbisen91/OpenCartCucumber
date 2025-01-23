@@ -3,7 +3,7 @@ Feature: Login with Valid Credentials
   @sanity @regression
   Scenario: Successful Login with Valid Credentials
     Given the user navigates to login page
-    When user enters email as "pavanoltraining@gmail.com" and password as "test@123"
+    When user enters email as "madbis528@gmail.com" and password as "Test@369"
     And the user clicks on the Login button
     Then the user should be redirected to the MyAccount Page
     
